@@ -32,7 +32,7 @@ SRC = $(addprefix $(SRCDIR), $(FILES))
 all : $(NAME)
 
 $(NAME) : 
-		$(CC) $(FLAGS) -o $(NAME) $(SRC) includes/fillit.h
+		$(CC) $(FLAGS) -o $(NAME) $(SRC) -I $(INCLUDEDIR)
 
 $(OBJDIR)%.o : $(SRCDIR)%.c
 		mkdir -p $(OBJDIR)

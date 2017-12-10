@@ -19,13 +19,13 @@
 ** Initialisation des tetri **
 */
 
-void	init_memtet(s_eachtet *memtet)
+void	init_memtet(t_eachtet *memtet)
 {
 	int		i;
 
 	i = 0;
 	memtet -> size_each = 2;
-	memtet -> nb_tet = 0
+	memtet -> nb_tet = 0;
 		while (i < 26)
 		{
 			memtet -> tet[i].crds[0].x = 0;
@@ -48,7 +48,7 @@ void	init_memtet(s_eachtet *memtet)
 /*
 ** Sortie en cas d'erreur **
 */
-void	exit_close(inf fd)
+void	exit_close(int fd)
 {
 	write(1, "error\n", 6);
 	close (fd);
