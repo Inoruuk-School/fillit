@@ -22,7 +22,7 @@ void			ft_putchar(char c)
 /*
 ** Affiche les lettres de chaque tetri
 */
-static void		--print_alpha(t_eachtet *memtet, int x, int y)
+static void		print_alpha(t_eachtet *memtet, int x, int y)
 {
 	int		i;
 
@@ -44,7 +44,7 @@ static void		--print_alpha(t_eachtet *memtet, int x, int y)
 ** Affiche les lignes de la map resolu **
  * Determine la lettre a afficher *
 */
-void			--print_tet(t_eachtet *memtet)
+void			print_tet(t_eachtet *memtet)
 {
 	int		xi;
 	int		yi;
@@ -55,7 +55,7 @@ void			--print_tet(t_eachtet *memtet)
 		xi = 0;
 		while (yi < memtet -> size_each)
 		{
-			--print_alpha(memtet, xi, yi);
+			print_alpha(memtet, xi, yi);
 			xi++;
 		}
 		ft_putchar('\n');

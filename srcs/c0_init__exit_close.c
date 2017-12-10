@@ -19,7 +19,7 @@
 ** Initialisation des tetri **
 */
 
-void	--init_memtet(s_eachtet *memtet)
+void	init_memtet(s_eachtet *memtet)
 {
 	int		i;
 
@@ -48,7 +48,7 @@ void	--init_memtet(s_eachtet *memtet)
 /*
 ** Sortie en cas d'erreur **
 */
-void	--exit_close(inf fd)
+void	exit_close(inf fd)
 {
 	write(1, "error\n", 6);
 	close (fd);

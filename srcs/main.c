@@ -18,14 +18,15 @@ int main (int ac, char **av)
 	t_eachtet	memtet;
 	int			fd;
 
-	--init_memtet(&memtet);
+	init_memtet(&memtet);
 	if ((ac != 2) || (fd = open(av[1], O_RDONLY)) < 0)
 	{
 		write(1, "error\n", 6);
 		return (0);
 	}
-	--ft_check_all(&memtet, fd);
-	--resolve(&memtet);
-	--print_tet(&memtet);
+	ft_check_all(&memtet, fd);
+//	resolve(&memtet);
+	print_tet(&memtet);
 	close(fd);
 	return (0);
+}

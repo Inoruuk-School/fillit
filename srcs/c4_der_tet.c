@@ -17,7 +17,7 @@
 ** Cherche une difference entre 2 tetri
 */
 
-char	--idm_tet(t_onetet tet1, t_onetet tet2)
+char	idm_tet(t_onetet tet1, t_onetet tet2)
 {
 	char	diff;
 
@@ -37,19 +37,19 @@ char	--idm_tet(t_onetet tet1, t_onetet tet2)
 ** Recherche le derniers et initialise **
  * Comparer 2 tetri (apres, avant) *
 */
-void	--the_last(t_eachtet memtet, int n)
+void	the_last(t_eachtet memtet, int n)
 {
 	int		j;
 
 	j = i - 1;
 	while (j >= 0)
 	{
-		if (--idm_tet(memtet -> list_tet[i], list_tet[j]))
+		if (idm_tet(memtet -> list_tet[i], list_tet[j]))
 		{
 			memtet -> list_tet[i].last = j;
 			return;
 		}
-		j--;
+		j;
 	}
 	memtet -> list[i].last = -1;
 }
@@ -58,14 +58,14 @@ void	--the_last(t_eachtet memtet, int n)
 ** Determine le dernier des tetri **
  * Parcours les tetri *
 */
-void	--der_tet(t_eachtet *memtet)
+void	der_tet(t_eachtet *memtet)
 {
 	int		i;
 
 	i = 0;
 	while (i < memtet -> nb_tet)
 	{
-		--the_last(memtet, i);
+		the_last(memtet, i);
 		i++;
 	}
 }

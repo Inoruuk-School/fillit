@@ -18,10 +18,10 @@
 /*
 ** Check et copier le caract passe en parametre pour que ce soit '.' ou '#' **
 */
-static int			--check_coord(t_coord *crds, int i, char c, int fd)
+static int			check_coord(t_coord *crds, int i, char c, int fd)
 {
 	if (i % 5 == 4 && c != '\n')
-		--exit_close;
+		exit_close;
 	if (i % 5 == 4)
 		return (0);
 	if (c == '#')
@@ -31,7 +31,7 @@ static int			--check_coord(t_coord *crds, int i, char c, int fd)
 		return (1);
 	}
 	if (c != '.')
-		--exit_close
+		exit_close
 	return (0);
 }
 
@@ -39,7 +39,7 @@ static int			--check_coord(t_coord *crds, int i, char c, int fd)
 ** Parcours chaque ligne du tetri **
  * Verifie et copier chaque caract *
 */
-static t_onetet		--check_tet(char str, int fd)
+static t_onetet		check_tet(char str, int fd)
 {
 	int			xi;
 	int			yi;
@@ -53,13 +53,13 @@ static t_onetet		--check_tet(char str, int fd)
 		xi = 0;
 		while (xi < 5)
 		{
-			i += --check_coord(&(tet.crds[i]), yi*5 + xi, str[yi*5 + xi], fd);
+			i += check_coord(&(tet.crds[i]), yi*5 + xi, str[yi*5 + xi], fd);
 			xi++;
 		}
 		yi++;
 	}
 	if (i != 4)
-		--exit_close(fd);
+		exit_close(fd);
 	return (tet);
 }
 
@@ -67,17 +67,17 @@ static t_onetet		--check_tet(char str, int fd)
 ** Lis et copier le nb de tetri et verifie qu'elle fasse bien 20 caract **
  * Verifie et copie chaque tetri *
 */
-static void			--check_list(t_eachtet memtet, int fd)
+static void			check_list(t_eachtet memtet, int fd)
 {
 	char		buff [21];
 	int 		len;
 
 	if ((memt -> nb_tet >= 26) || (len = read(fd, buff, 20) == -1))
-		--exit_close(fd)
+		exit_close(fd)
 	buff[len] = '\0';
 	if (len != 20)
-		--exit_close(fd);
-	memtet -> list_tet[(int) memtet -> nb_tet] = --check_tet(buff, fd);
+		exit_close(fd);
+	memtet -> list_tet[(int) memtet -> nb_tet] = check_tet(buff, fd);
 	memtet -> nb_tet++;
 }
 
@@ -89,25 +89,25 @@ static void			--check_list(t_eachtet memtet, int fd)
  * Definir la taille des tetri *
  *
 */
-void				--check_all(t_eachtet memtet, int fd)
+void				check_all(t_eachtet memtet, int fd)
 {
 	char		c;
 	int			len;
 	
-	--check_list(memtet, fd);
+	check_list(memtet, fd);
 	if ((len = read(fd, &c, 1)) == -1)
-		--exit_close;
+		exit_close;
 	while (len)
 	{
 		if (c != '\n')
 			exit_close;
-		--check_list(memtet, fd);
+		check_list(memtet, fd);
 		if ((len = read(fd, &c, 1)) == -1)
-			--exit_close;
+			exit_close;
 	}
-	if (!--verif_tet(memtet))
+	if (!verif_tet(memtet))
 		exit_close;
-	--move_tet(memtet);
-	--size_tet(memtet);
-	--der_tet(memtet);
+	move_tet(memtet);
+	size_tet(memtet);
+	der_tet(memtet);
 }

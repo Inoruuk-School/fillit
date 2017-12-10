@@ -18,18 +18,21 @@ FLAGS = -Wall -Wextra -Werror
 FILES = c0_init__exit_close.c c1_verif_tet.c c2_move_tet.c c3_size_tet.c c4_der_tet.c \
 		check_all.c main.c print_tet.c solve.c
 
+OBJS = c0_init__exit_close.o c1_verif_tet.o c2_move_tet.o c3_size_tet.o c4_der_tet.o \
+		check_all.o main.o print_tet.o solve.o
+
 INCLUDEDIR = includes/
 
 SRCDIR = srcs/
 SRC = $(addprefix $(SRCDIR), $(FILES))
 
-OBJDIR = objs/
-OBJ = $(addprefix $(OBJDIR) $(FILES: .c = .o))
+#OBJDIR = objs/
+#OBJ = $(addprefix $(OBJDIR) $(OBJS))
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-		$(CC) $(FLAGS) -o $(NAME) $(OBJ)
+$(NAME) : 
+		$(CC) $(FLAGS) -o $(NAME) $(SRC) includes/fillit.h
 
 $(OBJDIR)%.o : $(SRCDIR)%.c
 		mkdir -p $(OBJDIR)

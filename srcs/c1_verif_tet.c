@@ -16,7 +16,7 @@
 /*
  * Verifie chaque coordonnee de chaque tetri *
 */
-char			--pos_tet(t_each_tet *tet, int x, int y)
+char			pos_tet(t_each_tet *tet, int x, int y)
 {
 	int		i;
 	
@@ -33,7 +33,7 @@ char			--pos_tet(t_each_tet *tet, int x, int y)
 /*
  * Regarde les 3 cases autour *
 */
-static char		--verif_tier(t_eachtet *tet,int x, int y)
+static char		verif_tier(t_eachtet *tet,int x, int y)
 {
 	int		cas;
 
@@ -57,7 +57,7 @@ static char		--verif_tier(t_eachtet *tet,int x, int y)
  * Regarde si la case est bien a cote d'un autre *
  * Verifie les cases adjacents
 */
-static char		--verif_duo(t_each_tet *tet)
+static char		verif_duo(t_each_tet *tet)
 {
 	int		i;
 	char	x;
@@ -73,7 +73,7 @@ static char		--verif_duo(t_each_tet *tet)
 		cas = cas + pos_tet(tet, x - 1, y) + pos_tet(tet, x, y - 1);
 		if (cas >= 2)
 			return (1);
-		cas = --verif_tier(tet, x, y);
+		cas = verif_tier(tet, x, y);
 		if (!cas)
 			return (0);
 	}
@@ -83,7 +83,7 @@ static char		--verif_duo(t_each_tet *tet)
 /*
  * Regarde si la case n'est pas seul (rien autour) *
 */
-static char		--verif_solo(t_each_tet *tet)
+static char		verif_solo(t_each_tet *tet)
 {
 	int		i;
 	int		cas;
@@ -92,10 +92,10 @@ static char		--verif_solo(t_each_tet *tet)
 	while (i < 4)
 	{
 		cas = 0;
-		cas = cas + --pos_tet(tet, tet -> crds[i].x + 1, tet -> crds[i].y);
-		cas = cas + --pos_tet(tet, tet -> crds[i].x, tet -> crds[i].y + 1);
-		cas = cas + --pos_tet(tet, tet -> crds[i].x - 1, tet -> crds[i].y);
-		cas = cas + --pos_tet(tet, tet -> crds[i].x, tet -> crds[i].y - 1);
+		cas = cas + pos_tet(tet, tet -> crds[i].x + 1, tet -> crds[i].y);
+		cas = cas + pos_tet(tet, tet -> crds[i].x, tet -> crds[i].y + 1);
+		cas = cas + pos_tet(tet, tet -> crds[i].x - 1, tet -> crds[i].y);
+		cas = cas + pos_tet(tet, tet -> crds[i].x, tet -> crds[i].y - 1);
 		if (!cas)
 			return (0);
 		i++;
@@ -108,16 +108,16 @@ static char		--verif_solo(t_each_tet *tet)
  * Verifie les cas isolees *
  * Verifie les cas particuliers *
 */
-char			--verif_tet(t_eachtet *memtet)
+char			verif_tet(t_eachtet *memtet)
 {
 	int		i;
 
 	i = 0;
 	while (i < memtet -> nb_tet)
 	{
-		if (!--verif_solo(&memtet ->list_tet[i]))
+		if (!verif_solo(&memtet ->list_tet[i]))
 			return (0);
-		if (!--verif_duo(&memtet ->list_tet[i]))
+		if (!verif_duo(&memtet ->list_tet[i]))
 			return (0);
 		i++;
 	}

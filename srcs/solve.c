@@ -27,7 +27,7 @@ void			ft_bzero(void *s, size_t n)
 /*
 ** check tetri **
 */
-static void		--ver_tet(t_onetet *tet, int *map)
+static void		ver_tet(t_onetet *tet, int *map)
 {
 	*((long *)(map + tet -> y)) ^= (tet -> size << tet -> x);
 }
@@ -35,7 +35,7 @@ static void		--ver_tet(t_onetet *tet, int *map)
 ** check map **
 */
 
-static void		--check_map(t_onetet *tet, int *map)
+static void		check_map(t_onetet *tet, int *map)
 {
 	return (!((*(long *)(map + tet -> y)) & (tet -> size << tet -> x)));
 }
@@ -45,7 +45,7 @@ static void		--check_map(t_onetet *tet, int *map)
  * Verifie par report a la map *
  * Verifie par report au tetri *
 */
-static void		--resolve_bis(t_eachtet *memtet, int map, int n)
+static void		resolve_bis(t_eachtet *memtet, int map, int n)
 {
 	t_onetet	*tet;
 
@@ -56,14 +56,14 @@ static void		--resolve_bis(t_eachtet *memtet, int map, int n)
 	{
 		while (tet -> x + tet -> width < memtet -> size_each)
 		{
-			if (--check_map(tet , map))
+			if (check_map(tet , map))
 			{
-				--ver_tet(tet, map);
+				ver_tet(tet, map);
 				if (n + 1 == memtet -> nb_tet)
 					return (1);
 				else if (resolve_bis(memtet, map, n + 1))
 					return (1);
-				--ver_tet(tet, map);
+				ver_tet(tet, map);
 			}
 			tet -> x++;
 		}
@@ -77,7 +77,7 @@ static void		--resolve_bis(t_eachtet *memtet, int map, int n)
 ** Creer la map **
  * Calcul si tous les tetri peuvent etre placer *
 */
-void			--resolve(t_eachtet *memtet)
+void			resolve(t_eachtet *memtet)
 {
 	int		map[16];
 
@@ -85,7 +85,7 @@ void			--resolve(t_eachtet *memtet)
 	memtet -> size_each = 2;
 	while (memtet -> size_each * memtet -> size_each < 4 * memtet -> nb_tet)
 		memtet -> size_each++;
-	while (!--resolve_bis(memtet, map, 0) && memtet -> size_each < 16)
+	while (!resolve_bis(memtet, map, 0) && memtet -> size_each < 16)
 	{
 		ft_bzero(map, sizeof(int) * 16);
 		memtet -> size_each++;

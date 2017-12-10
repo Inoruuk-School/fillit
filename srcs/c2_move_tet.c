@@ -16,23 +16,23 @@
 /*
  * Bouger tous les tetris en haut a gauche *
 */
-static void		--corners(t_eachtet *tet)
+static void		corners(t_eachtet *tet)
 {
 	while (tet -> crds[0].x && tet -> crds[1].x && 
 			tet -> crds[2].x && tet -> crds[3].x)
 	{
-		tet -> crds[0].x--;
-		tet -> crds[1].x--;
-		tet -> crds[2].x--;
-		tet -> crds[3].x--;
+		tet -> crds[0].x;
+		tet -> crds[1].x;
+		tet -> crds[2].x;
+		tet -> crds[3].x;
 	}
 	while (tet -> crds[0].y && tet -> crds[1].y && 
 			tet -> crds[2].y && tet -> crds[3].y)
 	{
-		tet -> crds[0].y--;
-		tet -> crds[1].y--;
-		tet -> crds[2].y--;
-		tet -> crds[3].y--;
+		tet -> crds[0].y;
+		tet -> crds[1].y;
+		tet -> crds[2].y;
+		tet -> crds[3].y;
 	}
 }
 
@@ -47,7 +47,7 @@ void	move_tet(t_eachtet *tet)
 	i = 0;
 	while (i < tet -> nb_tet)
 	{
-		--corners(tet -> list_tet[i]);
+		corners(tet -> list_tet[i]);
 		i++;
 	}
 }
